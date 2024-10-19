@@ -20,11 +20,19 @@ bot.on('message', async (msg) => {
 
     let users = await db.getUsers()
 
-    users.forEach(async(user) => {
+    let length = users.length
+
+    for (let i = 0; i <= length; i++) {
         try {
-            await bot.copyMessage(user.userId, chatId, msg.message_id)
+            await bot.copyMessage(users[i].userId, chatId, msg.message_id)
         } catch{}
-    })
+    }
+
+    // users.forEach(async(user) => {
+    //     try {
+    //         await bot.copyMessage(user.userId, chatId, msg.message_id)
+    //     } catch{}
+    // })
 
     console.log("finished sending")
 });
